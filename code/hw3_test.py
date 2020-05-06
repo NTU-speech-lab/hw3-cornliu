@@ -9,7 +9,6 @@ import pandas as pd
 from torch.utils.data import DataLoader, Dataset
 import time
 import sys
-import gdown
 
 
 class Classifier(nn.Module):
@@ -131,7 +130,8 @@ with torch.no_grad():
         for y in test_label:
             prediction.append(y)
 #將結果寫入 csv 檔
-with open("predict.csv", 'w') as f:
+with open(sys.argv[2], 'w') as f:
     f.write('Id,Category\n')
     for i, y in  enumerate(prediction):
         f.write('{},{}\n'.format(i, y))
+
